@@ -12,7 +12,7 @@ var Homa3 = {};
 
        
         for (var i = 0; i < counter.length; i++) {
-            document.body.removeChild(counter[i]);       
+            document.body.removeChild(counter[i]) ;       
         }
     }
  }
