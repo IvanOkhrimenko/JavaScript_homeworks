@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <button id="click"> Summ</button>
+    <p id="output"></p>
+</head>
+<body>
+        <script> 
+                
+               document.getElementById('click').onclick = function print() {
+            
+                            var args = getQueryString();
+                            var count = 0;
+                            var e = document.getElementById("output");
+            
+                            for(var i = 0; i < args.length; i++){
+                               count= count+ args[i];
+                            }
+                            
+                            e.innerHTML = "a = " + args[0]+"<br/>" + "b = " + args[1]+"<br/>" +"Сумма a + b = " + count;
+               }
+                function getQueryString(){
+                    var e = [];
+                    var query = location.search.substring(1);
+                    var pairs = query.split("&");
+            
+                    for (var i=0; i<pairs.length; i++){
+                        var pos = pairs[i].indexOf('=');
+                        if (pos== -1){
+                            continue;
+                        }
+                        var value = pairs[i].substring(pos + 1);
+                        
+                        e[i] = parseFloat(value);;
+                }
+                        return e;
+                }
+                </script>
+</body>
+</html>

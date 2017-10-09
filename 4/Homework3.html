@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function (){
+        document.getElementById("input").onblur = function(){
+            var str = document.getElementById("input").value;
+            var operation = str.match(/[+*/-]/g)[0];
+            var numberArray = str.split(/\W+/g);
+            document.getElementById("output").innerHTML = switCase(numberArray, operation);
+        }
+        function switCase(arr, oper){
+            var a = parseFloat(arr[0]),b = parseFloat(arr[1]);
+            if (a == 0 || b == 0 || oper == "/"){
+                return ("You can't divide by zero");
+            }
+            else {
+                switch( oper ){
+                    case "+": return a + b; break;
+                    case "-": return a - b; break;
+                    case "*": return a * b; break;
+                    case "/": return a / b; break;
+                }
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <input id="input" type="text">
+    <p id="output"></p>
+</body>
+</html>

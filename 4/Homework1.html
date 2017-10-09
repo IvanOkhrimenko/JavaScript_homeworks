@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <script>
+    var ms  = 0, sec = 0, min = 0;
+
+    window.onload = function(){
+
+        function count() {
+                if (ms == 0 && sec ==0&&min==0) {
+                    get("timer").innerHTML = "00:00:00";
+                }
+                else if (ms < 10 && sec < 10) {
+                    get("timer").innerHTML = "0" + min.toString() + ":0" + sec.toString() + ":0" + ms.toString();
+                }
+                else if (sec > 10 && ms < 10) {
+                    get("timer").innerHTML = "0" + min.toString() + ":" + sec.toString() + ":0" + ms.toString();
+                }
+                else if (sec<10) {
+                    get("timer").innerHTML = "0" + min.toString() + ":0" + sec.toString() + ":" + ms.toString();
+                }
+                else if (min < 10) {
+                    get("timer").innerHTML = "0" + min.toString() + ":" + sec.toString() + ":" + ms.toString();
+                }
+                ms++;
+                if (ms>99) {
+                    ms = 0;
+                    sec++;
+                    if (sec>59) {
+                        sec = 0;
+                        min++;
+                    }
+                }
+            }
+            get("startbut").onclick = function (){
+            intervalHandler = setInterval(count, 0);
+            }
+
+            get("stopbut").onclick = function () {
+                // останавливаем таймер, по которому вызывается функция count
+                clearInterval(intervalHandler);
+            }
+
+            get("resetbut").onclick = function () {
+                ms = 0;
+                sec = 0;
+                min = 0;
+                get("timer").innerHTML = "00:00:00";
+            }
+    }
+    var get = function (id){
+            return document.getElementById(id);
+        }
+    </script>
+</head>
+<body>
+    <p id="timer">00:00:00</p>
+    <button id="startbut">Start</button>
+    <button id="stopbut">Stop</button> 
+    <button id="resetbut">Reset</button>
+
+</body>
+</html>
